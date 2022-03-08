@@ -1,6 +1,10 @@
+# Importing Libraries For the Project
 import cv2
 import sys
 from random import randrange
+from tkinter import *
+from PIL import Image, ImageTk
+import numpy as np
 
 # STEPS
 # 1. MAKE A CLASSIFIER
