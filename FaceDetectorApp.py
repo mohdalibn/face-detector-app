@@ -15,24 +15,47 @@ import cv2
 
 
 # Changes The Upload Button Image On Hover
-def UploadBtnHover():
-    pass
+def UploadBtnHover(e):
+    # Initially, DetectionMode is zero
+    if not VideoMode:
+        hoverImg = PhotoImage(file=f"AppImages/HoverUploadImg.png")
+    else:
+        hoverImg = PhotoImage(file=f"AppImages/HoverVideoUploadImg.png")
+
+    UploadBtn['image'] = hoverImg
+    UploadBtn.image = hoverImg
 
 
 # Changes The Upload Button Image Off Hover
-def UploadBtnLeave():
-    pass
+def UploadBtnLeave(e):
+    if not VideoMode:
+        leaveImg = PhotoImage(file=f"AppImages/UploadImg.png")
+    else:
+        leaveImg = PhotoImage(file=f"AppImages/VideoUploadImg.png")
+
+    UploadBtn['image'] = leaveImg
+    UploadBtn.image = leaveImg
 
 
 # Changes The Detect Button Image On Hover
-def DetectBtnHover():
-    pass
+def DetectBtnHover(e):
+    hoverImg = PhotoImage(file=f"AppImages/HoverDetectImg.png")
+    DetectBtn['image'] = hoverImg
+    DetectBtn.image = hoverImg
 
 
 # Changes The Upload Button Image Off Hover
-def DetectBtnLeave():
-    pass
+def DetectBtnLeave(e):
+    leaveImg = PhotoImage(file=f"AppImages/DetectImg.png")
+    DetectBtn['image'] = leaveImg
+    DetectBtn.image = leaveImg
 
+
+ImageVar = ""  # Initializing the ImageVar Variable with Empty String
+VideoVar = ""  # Initializing the VideoVar Variable with Empty String
+# Variable to keep track of whether the Video Radio Button is Active or not
+VideoMode = False
+FaceCount = 0  # Variable to keep track of number of faces on an Image/Video Frame
 
 # Initializing Tkinter instanct
 FaceDetectionApp = Tk()
