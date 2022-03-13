@@ -87,6 +87,7 @@ def FaceCounter():
         FaceCountLabel.configure(text="Result: No Faces Detected!")
 
 
+# This function creates a new image/video frame with the original proportions to fit within the Black Output Window
 def NewFrameSize(frame):
     height, width, channels = frame.shape
     ratio = height/width
@@ -110,6 +111,27 @@ def NewFrameSize(frame):
     FinalImage = ImageTk.PhotoImage(image=newImage)
 
     return FinalImage, new_width, new_height
+
+
+# This function centers the image/video frame within the Black Output Window
+def LabelPositionCalc(FrameWidth, FrameHeight):
+    # Calculating the label position according to the frame size
+    # The Values 375, 391, 454, 70 are pre defined width, xpos, height, ypos of the Black Output Window respectively
+    BlackWindowWidth = 375
+    BlackWindowXPos = 391
+    BlackWindowHeight = 454
+    BlackWindowYPos = 70
+
+    # Calculating the new X Position of the Black Output Label
+    NewXPos = BlackWindowWidth - FrameWidth
+    NewXPos = (NewXPos // 2) + BlackWindowXPos
+
+    # Calculating the new Y Position of the Black Output Label
+    NewYPos = BlackWindowHeight - FrameHeight
+    NewYPos = (NewYPos // 2) + BlackWindowYPos
+
+    # Updating the Black Output Label position with the new values
+    OutputWindowLabel.place(x=NewXPos, y=NewYPos)
 
 
 # This function is executed when it is called through the FaceDetection function when the VideoMode is set to true
