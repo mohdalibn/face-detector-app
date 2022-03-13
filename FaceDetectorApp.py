@@ -74,6 +74,17 @@ canvas.place(x=0, y=0)
 background_img = PhotoImage(file=f"AppImages/background.png")
 background = canvas.create_image(400.0, 275.0, image=background_img)
 
+# Adding Radio Buttons for the user to choose between Image Mode and Video Mode
+DetectionMode = IntVar()
+ImageRadBtn = Radiobutton(FaceDetectionApp, text=" IMAGE", font=('Helvatical bold', 12),
+                          activebackground='black', activeforeground='#FF9393', bg="black", fg="#FF9393", value=1,
+                          variable=DetectionMode, cursor='hand2', command=DetectMode)
+VideoRadBtn = Radiobutton(FaceDetectionApp, text=" VIDEO", font=('Helvatical bold', 12), activebackground='black', activeforeground='#FF9393', bg="black",  fg="#FF9393", value=2,
+                          variable=DetectionMode, cursor='hand2', command=DetectMode)
+
+ImageRadBtn.place(x=82, y=115)
+VideoRadBtn.place(x=187, y=115)
+
 
 # Upload Image/Video Button
 BtnImg1 = PhotoImage(file=f"AppImages/UploadImg.png")
@@ -122,7 +133,6 @@ DetectBtn.bind("<Leave>", DetectBtnLeave)
 FaceCountLabel = Label(FaceDetectionApp, bg="#C4C4C4", text="Result: None",
                        font=('Helvatical bold', 15))
 FaceCountLabel.place(x=40, y=370)
-
 
 # Main Label For the Output Window
 OutputWindowLabel = Label(FaceDetectionApp, bg="#000")
