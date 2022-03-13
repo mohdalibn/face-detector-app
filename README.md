@@ -2,6 +2,7 @@
 # ![face-detection-app](https://user-images.githubusercontent.com/95453430/158064031-8ee33e03-19ac-4ae4-b19a-1c6ff540571f.svg)
 
 <!-- Project Images -->
+![FaceDetectionAppImg](https://user-images.githubusercontent.com/95453430/158064371-1a913cf0-743d-40b3-85a2-c8b3d7193e6c.png)
 
 <!-- Project Description -->
 # ![project-description (7)](https://user-images.githubusercontent.com/95453430/158064033-3300b98d-9723-4131-bca9-be1cc2f3257c.svg)
