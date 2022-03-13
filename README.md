@@ -7,6 +7,8 @@
 <!-- Project Description -->
 # ![project-description (7)](https://user-images.githubusercontent.com/95453430/158064033-3300b98d-9723-4131-bca9-be1cc2f3257c.svg)
 
+This is a **Face Detection App** made using **Python**. The **Face Detection** is achieved through the **Haar Cascaade Pretrained Face Data Model** loaded using **OpenCV Python**. the upload buttons, the detect buttons, and the background image of the application are all designed using **Figma** and the **User Interface (UI)** of the app is implemented using a **Python GUI Library** called **Tkinter**. The User can choose between two modes: **Image Mode** & **Video Mode**. Depending on the mode selected, the User can either upload an **Image File** or a **Video File**, apply the **Face Detection**, and view the output in the **Output Window**.
+
 <!-- Project Tech Stack -->
 # ![technologies-used (7)](https://user-images.githubusercontent.com/95453430/158064047-891929a1-c4a9-4999-abd4-7e87b75175ec.svg)
 
