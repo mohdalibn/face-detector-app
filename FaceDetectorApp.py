@@ -72,6 +72,21 @@ def FilePrompt():
     DestroyOutputLabel()
 
 
+# This function displays the face count on the FaceCountLabel using the FaceCount variable
+def FaceCounter():
+    global FaceCount
+
+    if FaceCount > 0:
+        if FaceCount == 1:
+            FaceCountLabel.configure(
+                text="Result: " + str(FaceCount) + " Face Detected!")
+        else:
+            FaceCountLabel.configure(
+                text="Result: " + str(FaceCount) + " Faces Detected!")
+    else:
+        FaceCountLabel.configure(text="Result: No Faces Detected!")
+
+
 # Changes The Upload Button Image On Hover
 def UploadBtnHover(e):
     # Initially, DetectionMode is zero
