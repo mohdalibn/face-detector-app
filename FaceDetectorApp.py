@@ -47,6 +47,21 @@ UploadBtn.place(
     width=244,
     height=44)
 
+# Detect Faces Button
+BtnImg2 = PhotoImage(file=f"AppImages/DetectImg.png")
+DetectBtn = Button(
+    image=BtnImg2,
+    borderwidth=0,
+    highlightthickness=0,
+    bg="#000",
+    cursor="hand2",
+    relief="flat")
+
+DetectBtn.place(
+    x=55, y=297,
+    width=244,
+    height=44)
+
 
 # Starting the Tkinter MainLoop
 FaceDetectionApp.mainloop()
