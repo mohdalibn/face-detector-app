@@ -51,6 +51,35 @@ def DetectBtnLeave(e):
     DetectBtn.image = leaveImg
 
 
+# Function that Updates the App when either of the Modes are choosen
+def DetectMode():
+    global VideoMode, OutputWindowLabel
+
+    # Destroy and Create a new Output Window Label
+    OutputWindowLabel.destroy()
+    OutputWindowLabel = Label(FaceDetectionApp, bg="#000")
+    OutputWindowLabel.place(x=417, y=95)
+
+    # Code to Change the image of the upload button if detection mode is video
+    if DetectionMode.get() == 2:
+        VideoMode = True
+        VideoImg = PhotoImage(file=f"AppImages/VideoUploadImg.png")
+        UploadBtn['image'] = VideoImg
+        UploadBtn.image = VideoImg
+
+    else:
+
+        VideoMode = False
+        VideoImg = PhotoImage(file=f"AppImages/UploadImg.png")
+        UploadBtn['image'] = VideoImg
+        UploadBtn.image = VideoImg
+
+    # Resets the Output Window and Text Labels
+    OutputWindowLabel.image = ""
+    FileNameLabel.configure(text="File Name: No File Selected")
+    FaceCountLabel.configure(text="Result: None")
+
+
 ImageVar = ""  # Initializing the ImageVar Variable with Empty String
 VideoVar = ""  # Initializing the VideoVar Variable with Empty String
 # Variable to keep track of whether the Video Radio Button is Active or not
