@@ -1,6 +1,11 @@
+# Importing Libraries For the Project
 import cv2
 import sys
 from random import randrange
+from tkinter import *
+from tkinter import ttk, filedialog
+from PIL import Image, ImageTk
+import numpy as np
 
 # STEPS
 # 1. MAKE A CLASSIFIER
@@ -44,6 +49,8 @@ for cell in face_coordinates:  # this code is used to draw rectangles around mul
     cv2.rectangle(img, (x1, y1), (x1 + width, y1 + height),
                   (0, randrange(256), 0), 2)
 
+    cv2.putText(img, "TESTING TEXT", (x1, y1 + height + 100),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
 # Alternative method to get the coords, width and height
 # (x1, y1, width, height) = face_coordinates[0]
