@@ -87,6 +87,71 @@ def FaceCounter():
         FaceCountLabel.configure(text="Result: No Faces Detected!")
 
 
+# This function is executed when the Detect Face Button is Clicked
+def FaceDetection():
+    global ImageVar, VideoVar, FaceCount, DetectionMode
+
+    if not VideoMode and len(ImageVar) < 1:
+        FileNameLabel.configure(text="File Name: Select An Image")
+
+    elif FaceCount >= 1:  # This if statement prevents the user from spamming the Detect Face Button
+        if not VideoMode:
+            FaceCountLabel.configure(text="Result: Select a new image!")
+        else:
+            FaceCountLabel.configure(text="Result: Select a new video!")
+
+    else:
+
+        if VideoMode:
+
+            _, frame = VideoVar.read()  # The purpose this line is to get the first frame of the video so that we can calculate and update the Black Output Label position just once instead of repeating it in the video loop
+
+            # Unpacking the values returned by the function
+            _, NewWidth, NewHeight = NewFrameSize(frame)
+
+            # Updating the new Black Output Label Position
+            LabelPositionCalc(NewWidth, NewHeight)
+
+            PlayVideo()
+
+        else:
+            # Converting the Image to GrayScale
+            grayscaled_img = cv2.cvtColor(ImageVar, cv2.COLOR_BGRA2GRAY)
+
+            face_coordinates = trained_faced_data.detectMultiScale(
+                grayscaled_img)
+
+            for cell in face_coordinates:  # this code is used to draw rectangles around multiple faces
+
+                # Incrementing the Facecount
+                FaceCount += 1
+
+                x1, y1, width, height = cell
+
+                # opencv color format is bgr instead of rgb. '2' here is the thickness of the rectangle
+                cv2.rectangle(ImageVar, (x1, y1), (x1 + width, y1 + height),
+                              (0, 0, 255), 4)
+
+                DisplayText = "Face " + str(FaceCount)
+
+                cv2.putText(ImageVar, DisplayText,
+                            (x1 + (width//4), y1 + height + 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 0), 10, cv2.LINE_AA)
+
+            OutputImage = cv2.cvtColor(ImageVar, cv2.COLOR_BGR2RGB)
+
+            FinalImage, new_width, new_height = NewFrameSize(OutputImage)
+
+            # Calculating the label position according to the frame size
+            LabelPositionCalc(new_width, new_height)
+
+            # Updating the SecondaryImgLabel to Display
+            OutputWindowLabel.configure(image=FinalImage)
+            OutputWindowLabel.image = FinalImage
+
+            # Updates the count of faces on the Result Label
+            FaceCounter()
+
+
 # Changes The Upload Button Image On Hover
 def UploadBtnHover(e):
     # Initially, DetectionMode is zero
@@ -218,6 +283,7 @@ DetectBtn = Button(
     highlightthickness=0,
     bg="#000",
     cursor="hand2",
+    command=FaceDetection,
     relief="flat")
 
 DetectBtn.place(
