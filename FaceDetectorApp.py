@@ -319,6 +319,7 @@ FaceDetectionApp.geometry("800x550")  # Size of the tkinter window
 # Added an Icon for the App
 FaceDetectionApp.iconbitmap('AppImages/AppIcon.ico')
 FaceDetectionApp.configure(bg="#fff")
+FaceDetectionApp.resizable(False, False)
 
 # Creating a Canvas for the App
 canvas = Canvas(FaceDetectionApp, bg="#ffffff", height=550,
