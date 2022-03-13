@@ -20,3 +20,20 @@ This is a **Face Detection App** made using **Python**. The **Face Detection** i
 
 <!-- How To Use Project -->
 # ![how-to-use-project (2)](https://user-images.githubusercontent.com/95453430/158064051-9b4a405e-4873-40a5-84d4-5a451b9a8a63.svg)
+
+Download a copy of this repository onto your local machine and extract it into a suitable folder.
+
+Use pip to install the following libraries for your **virtual Environment**, where you'll be running this project folder, or your **Global Python**.
+
+*Install OpenCV for Python*
+```Python
+pip install opencv-python
+```
+
+*Install Pillow for Image Processing in Python*
+```Python
+pip install Pillow
+```
+
+- After installing the required libraries, run the FaceDetectionApp.py file.
+- Enjoying playing around with the App!
