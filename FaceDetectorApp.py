@@ -87,6 +87,31 @@ def FaceCounter():
         FaceCountLabel.configure(text="Result: No Faces Detected!")
 
 
+def NewFrameSize(frame):
+    height, width, channels = frame.shape
+    ratio = height/width
+
+    new_width = width
+    new_height = height
+
+    if height > 400 or width > 300:
+        if ratio < 1:
+            new_width = 300
+            new_height = int(new_width * ratio)
+        else:
+            new_height = 400
+            new_width = int(new_height * (width / height))
+
+    ratio = height / new_height
+    frame = cv2.resize(
+        frame, (new_width, new_height))
+
+    newImage = Image.fromarray(frame)
+    FinalImage = ImageTk.PhotoImage(image=newImage)
+
+    return FinalImage, new_width, new_height
+
+
 # This function is executed when it is called through the FaceDetection function when the VideoMode is set to true
 def PlayVideo():
     global VideoVar, FaceCount
