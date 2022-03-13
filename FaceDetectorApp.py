@@ -7,4 +7,8 @@
 
 """
 
-#
+# Importing the Libraries required for this project
+from tkinter import *
+from tkinter import filedialog
+from PIL import Image, ImageTk
+import cv2
