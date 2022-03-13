@@ -14,6 +14,26 @@ from PIL import Image, ImageTk
 import cv2
 
 
+# Changes The Upload Button Image On Hover
+def UploadBtnHover():
+    pass
+
+
+# Changes The Upload Button Image Off Hover
+def UploadBtnLeave():
+    pass
+
+
+# Changes The Detect Button Image On Hover
+def DetectBtnHover():
+    pass
+
+
+# Changes The Upload Button Image Off Hover
+def DetectBtnLeave():
+    pass
+
+
 # Initializing Tkinter instanct
 FaceDetectionApp = Tk()
 FaceDetectionApp.title("Face Detection App")
@@ -47,6 +67,9 @@ UploadBtn.place(
     width=244,
     height=44)
 
+UploadBtn.bind("<Enter>", UploadBtnHover)
+UploadBtn.bind("<Leave>", UploadBtnLeave)
+
 # Detect Faces Button
 BtnImg2 = PhotoImage(file=f"AppImages/DetectImg.png")
 DetectBtn = Button(
@@ -61,6 +84,9 @@ DetectBtn.place(
     x=55, y=297,
     width=244,
     height=44)
+
+DetectBtn.bind("<Enter>", DetectBtnHover)
+DetectBtn.bind("<Leave>", DetectBtnLeave)
 
 
 # Starting the Tkinter MainLoop
