@@ -87,6 +87,50 @@ def FaceCounter():
         FaceCountLabel.configure(text="Result: No Faces Detected!")
 
 
+# This function is executed when it is called through the FaceDetection function when the VideoMode is set to true
+def PlayVideo():
+    global VideoVar, FaceCount
+
+    FaceCount = 0  # Initially setting FaceCount to 0 for each frame of a video so that sum doesn't add up the count of faces for all the frames played
+
+    success, frame = VideoVar.read()
+
+    if success == True:
+        # frame = imutils.resize(frame, width=550)
+
+        grayscaled_img = cv2.cvtColor(frame, cv2.COLOR_BGRA2GRAY)
+
+        face_coordinates = trained_faced_data.detectMultiScale(
+            grayscaled_img)
+
+        for cell in face_coordinates:  # this code is used to draw rectangles around multiple faces
+
+            # Incrementing the Facecount
+            FaceCount += 1
+
+            x1, y1, width, height = cell
+
+            # opencv color format is bgr instead of rgb. '2' here is the thickness of the rectangle
+            cv2.rectangle(frame, (x1, y1), (x1 + width, y1 + height),
+                          (0, 0, 255), 4)
+
+            DisplayText = "Face " + str(FaceCount)
+
+            cv2.putText(frame, DisplayText,
+                        (x1 + (width//4), y1 + height + 100), cv2.FONT_HERSHEY_COMPLEX_SMALL, 3, (0, 0, 0), 5, cv2.LINE_AA)
+
+        OutputImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        FinalFrame, _, _ = NewFrameSize(OutputImage)
+
+        OutputWindowLabel.configure(image=FinalFrame)
+        OutputWindowLabel.image = FinalFrame
+        OutputWindowLabel.after(1, PlayVideo)
+
+        # Updates the count of faces on the Result Label
+        FaceCounter()
+
+
 # This function is executed when the Detect Face Button is Clicked
 def FaceDetection():
     global ImageVar, VideoVar, FaceCount, DetectionMode
