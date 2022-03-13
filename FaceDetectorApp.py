@@ -32,5 +32,21 @@ background_img = PhotoImage(file=f"AppImages/background.png")
 background = canvas.create_image(400.0, 275.0, image=background_img)
 
 
+# Upload Image/Video Button
+BtnImg1 = PhotoImage(file=f"AppImages/UploadImg.png")
+UploadBtn = Button(
+    image=BtnImg1,
+    borderwidth=0,
+    highlightthickness=0,
+    bg="#000",
+    cursor="hand2",
+    relief="flat")
+
+UploadBtn.place(
+    x=55, y=164,
+    width=244,
+    height=44)
+
+
 # Starting the Tkinter MainLoop
 FaceDetectionApp.mainloop()
