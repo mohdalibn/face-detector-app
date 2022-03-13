@@ -18,9 +18,61 @@ import cv2
 trained_faced_data = cv2.CascadeClassifier(
     './haarcascade_frontalface_default.xml')
 
+
+# Destroys and Creates a New Output Label when a the Mode is changed or a new file is selected
+def DestroyOutputLabel():
+    global OutputWindowLabel
+
+    # This removes and image/video on the Label when the Upload button is click
+    OutputWindowLabel.destroy()
+    OutputWindowLabel = Label(FaceDetectionApp, bg="#000")
+    OutputWindowLabel.place(x=417, y=95)
+
+
+def FilePrompt():
+    global ImageVar, VideoVar, FaceCount
+
+    # Setting the FaceCount to Zero each time the function is called
+    FaceCount = 0
+
+    # Executes when DetectionMode is set to Image
+    if not VideoMode:
+        FilePath = filedialog.askopenfilename(filetypes=[(
+            "PNG Image File", "*.png"), ("JPG Image File", "*.jpg"), ("JPEG Image File", "*.jpeg")])
+
+    # Executes when DetectionMode is set to Video
+    else:
+        FilePath = filedialog.askopenfilename(filetypes=[(
+            "MP4 File", "*.mp4"), ("AVI File", "*.avi")])
+
+    # Checks whether the length of the file path is greater than 0
+    if len(FilePath) > 0:
+
+        if not VideoMode:
+            ImageVar = cv2.imread(FilePath)
+        else:
+            VideoVar = cv2.VideoCapture(FilePath)
+
+        # Getting the Image Name From the Image File Path
+        PathStr = FilePath
+        PathStr = PathStr.split('/')
+        FileName = PathStr[-1]
+
+        # Update the Image File Name to Display
+        FileNameLabel.configure(text="File Name: " + FileName)
+
+        # Removing the Output Window Image/Video when a new image/video is chosen
+        OutputWindowLabel.image = ""
+        FaceCountLabel.configure(text="Result: None")
+
+    else:
+        FileNameLabel.configure(text="File Name: No File Selected!")
+
+    # This removes and image/video on the Label when the Upload button is click
+    DestroyOutputLabel()
+
+
 # Changes The Upload Button Image On Hover
-
-
 def UploadBtnHover(e):
     # Initially, DetectionMode is zero
     if not VideoMode:
@@ -59,12 +111,9 @@ def DetectBtnLeave(e):
 
 # Function that Updates the App when either of the Modes are choosen
 def DetectMode():
-    global VideoMode, OutputWindowLabel
+    global VideoMode
 
-    # Destroy and Create a new Output Window Label
-    OutputWindowLabel.destroy()
-    OutputWindowLabel = Label(FaceDetectionApp, bg="#000")
-    OutputWindowLabel.place(x=417, y=95)
+    DestroyOutputLabel()
 
     # Code to Change the image of the upload button if detection mode is video
     if DetectionMode.get() == 2:
@@ -129,6 +178,7 @@ UploadBtn = Button(
     highlightthickness=0,
     bg="#000",
     cursor="hand2",
+    command=FilePrompt,
     relief="flat")
 
 UploadBtn.place(
