@@ -14,7 +14,13 @@ from PIL import Image, ImageTk
 import cv2
 
 
+# Loading the Pre-Trained Haar Cascaade Face Model Using OpenCV
+trained_faced_data = cv2.CascadeClassifier(
+    './haarcascade_frontalface_default.xml')
+
 # Changes The Upload Button Image On Hover
+
+
 def UploadBtnHover(e):
     # Initially, DetectionMode is zero
     if not VideoMode:
