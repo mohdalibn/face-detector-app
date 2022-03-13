@@ -90,8 +90,14 @@ UploadBtn.place(
     width=244,
     height=44)
 
+# Binding Functions for Hover Effect on the Upload Button
 UploadBtn.bind("<Enter>", UploadBtnHover)
 UploadBtn.bind("<Leave>", UploadBtnLeave)
+
+# Label to Display the File Name that the user uploads
+FileNameLabel = Label(FaceDetectionApp, bg="#C4C4C4",
+                      text="File Name: No File Selected", font=('Helvatical bold', 15))
+FileNameLabel.place(x=40, y=237)
 
 # Detect Faces Button
 BtnImg2 = PhotoImage(file=f"AppImages/DetectImg.png")
@@ -108,8 +114,19 @@ DetectBtn.place(
     width=244,
     height=44)
 
+# Binding Functions for Hover Effect on the Detect Button
 DetectBtn.bind("<Enter>", DetectBtnHover)
 DetectBtn.bind("<Leave>", DetectBtnLeave)
+
+# Label to Display the Result
+FaceCountLabel = Label(FaceDetectionApp, bg="#C4C4C4", text="Result: None",
+                       font=('Helvatical bold', 15))
+FaceCountLabel.place(x=40, y=370)
+
+
+# Main Label For the Output Window
+OutputWindowLabel = Label(FaceDetectionApp, bg="#000")
+OutputWindowLabel.place(x=417, y=95)
 
 
 # Starting the Tkinter MainLoop
